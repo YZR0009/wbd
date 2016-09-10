@@ -5,7 +5,6 @@ class Angle():
     def __init__(self):
         self.degree = 0
         self.minute = 0
-        #self.angle = ...       set to 0 degrees 0 minutes
         pass
     
     def setDegrees(self, degrees):
@@ -21,7 +20,6 @@ class Angle():
     def setDegreesAndMinutes(self, angleString):
         if not isinstance(angleString, str):
             raise ValueError("Angle.setDegreesAndMinutes:  The parameter must be a string!")
-        #matchAngle = re.match( r'^(\-?\d+) d (\d+)$ | (\d+\.{1}\d{1})$',angleString,re.X)
         matchAngle = re.match( r'^(\-?\d+) d ((\d+)$ | (\d+\.{1}\d{1})$)',angleString,re.X)
         if matchAngle:
             self.degree = int(matchAngle.group(1))
@@ -104,7 +102,6 @@ class Angle():
         string += str(self.minute)
         return string
         pass  
-    
     
     def getDegrees(self):
         tDegree = self.degree
