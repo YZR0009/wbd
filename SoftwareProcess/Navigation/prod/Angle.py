@@ -7,14 +7,15 @@ class Angle():
         self.minute = 0
         pass
     
-    def setDegrees(self, degrees):
-        if degrees == None:
-            degrees = 0
-        if isinstance(degrees, int) or isinstance(degrees, float):    
+    def setDegrees(self, degrees = 0):
+        if not (isinstance(degrees, int) or isinstance(degrees, float)):    
+            raise ValueError("Angle.setDegrees:  Degree must be a number!")           
+        else:
+            if isinstance(degrees, int):
+                degrees = float(degrees)
             self.degree = degrees%360
             self.minute = 0
-        else:
-            raise ValueError("Angle.setDegree:  Degree must be a number!")
+            return self.degree
         pass
     
     def setDegreesAndMinutes(self, angleString):
@@ -28,10 +29,13 @@ class Angle():
                 self.minute = round(self.minute,1)
             else:
                 self.minute = int(matchAngle.group(2))
+            if self.degree < 0:
+                self.minute = 0 - self.minute
             if self.minute > 60:
                 self.degree += self.minute/60
+                self.minute %= 60
             self.degree %= 360
-            self.minute %= 60
+            self.minute = round(self.minute, 1)
             return self.getDegrees()
         else:         
             if angleString == "":
@@ -56,7 +60,7 @@ class Angle():
                 raise ValueError("Angle.setDegreesAndMinutes:  Missing separator")
         pass
     
-    def add(self, angle):
+    def add(self, angle = None):
         if not isinstance(angle, Angle):
             raise ValueError("Angle.add:  only the instance of Angle can use add()")  
         tDegree1 = self.getDegrees()
@@ -67,9 +71,9 @@ class Angle():
         return self.degree
         pass
     
-    def subtract(self, angle):
+    def subtract(self, angle = None):
         if not isinstance(angle, Angle):
-            raise ValueError("Angle.substract:  only the instance of Angle can use subtract()")  
+            raise ValueError("Angle.subtract:  only the instance of Angle can use subtract()")  
         tDegree1 = self.getDegrees()
         tDegree2 = angle.getDegrees()
         self.degree = round(tDegree1 - tDegree2,1)
@@ -78,7 +82,7 @@ class Angle():
         return self.degree
         pass
     
-    def compare(self, angle):
+    def compare(self, angle = None):
         if not isinstance(angle, Angle):
             raise ValueError("Angle.compare:  only the instance of Angle can use compare()")  
         tDegree1 = self.getDegrees()
@@ -105,8 +109,9 @@ class Angle():
     
     def getDegrees(self):
         tDegree = self.degree
-        self.minute = float(self.minute)
-        tDegree += round(self.minute/60,1)
+        tMinute = self.minute + tDegree * 60
+        tMinute = round(tMinute,1)
+        tDegree = tMinute / 60.0
         tDegree %= 360
         return tDegree
         pass
