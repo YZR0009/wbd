@@ -5,7 +5,6 @@ class Angle():
     def __init__(self):
         self.degree = 0
         self.minute = 0
-        pass
     
     def setDegrees(self, degrees = 0):
         if not (isinstance(degrees, int) or isinstance(degrees, float)):    
@@ -16,7 +15,6 @@ class Angle():
             self.degree = degrees%360
             self.minute = 0
             return self.degree
-        pass
     
     def setDegreesAndMinutes(self, angleString):
         if not isinstance(angleString, str):
@@ -58,7 +56,6 @@ class Angle():
                     raise ValueError("Angle.setDegreesAndMinutes:  minute must be a number")
             else:
                 raise ValueError("Angle.setDegreesAndMinutes:  Missing separator")
-        pass
     
     def add(self, angle = None):
         if not isinstance(angle, Angle):
@@ -69,7 +66,6 @@ class Angle():
         self.degree %= 360
         self.minute = 0
         return self.degree
-        pass
     
     def subtract(self, angle = None):
         if not isinstance(angle, Angle):
@@ -80,7 +76,6 @@ class Angle():
         self.degree %=360
         self.minute = 0
         return self.degree
-        pass
     
     def compare(self, angle = None):
         if not isinstance(angle, Angle):
@@ -93,7 +88,6 @@ class Angle():
             return 0
         else:
             return -1
-        pass
     
     def getString(self):
         string = ""
@@ -103,10 +97,11 @@ class Angle():
             self.degree = int(self.degree)
         string += str(self.degree)
         string += "d"
+        if self.minute < 10:
+            string += "0"
         string += str(self.minute)
         return string
-        pass  
-    
+ 
     def getDegrees(self):
         tDegree = self.degree
         tMinute = self.minute + tDegree * 60
@@ -114,7 +109,7 @@ class Angle():
         tDegree = tMinute / 60.0
         tDegree %= 360
         return tDegree
-        pass
+
     
 
             
