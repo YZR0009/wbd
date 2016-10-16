@@ -10,8 +10,9 @@ class FixTest(unittest.TestCase):
     
     def setUp(self):
         self.myLogFile = "myLog.txt"
-        self.errorLogFile1 = "errorLog1.txt"
-        self.errorLogFile2 = "errorLog2.txt"
+        self.missingTagSightingFile = "missingTagSightings.xml"
+        self.InvalidedInfoSightingFile = "InvalidedInfoSightings.xml"
+        self.InvalidedOAltitudeSightingFile = "InvalidedOAltitudeSightings.xml"
         
     def tearDown(self):
         pass
@@ -133,22 +134,31 @@ class FixTest(unittest.TestCase):
 
     def test300_910_ShouldRaiseExceptionOnNoSightingFileHasBeenSet(self):
         expectedString = "Fix.getSightings:  "
+        fix = Fix.Fix(self.myLogFile)
         with self.assertRaises(ValueError) as context:
-            fix = Fix.Fix(self.myLogFile)
             tuple = fix.getSightings()                         
         self.assertEquals(expectedString, context.exception.args[0][0:len(expectedString)])     
 
-    def test300_920_ShouldRaiseExceptionOnErrorsEncounterInSightingFile(self):
+    def test300_920_ShouldRaiseExceptionOnMissingMandatoryTags(self):
         expectedString = "Fix.getSightings:  "
+        fix = Fix.Fix(self.myLogFile)
+        fix.setSightingFile("missingTagsSightings.xml")
         with self.assertRaises(ValueError) as context:
-            fix = Fix.Fix(self.errorLogFile1)
             tuple = fix.getSightings()                         
         self.assertEquals(expectedString, context.exception.args[0][0:len(expectedString)])    
 
-    def test300_930_ShouldRaiseExceptionOnTooLessObservedAltitude(self):
+    def test300_930_ShouldRaiseExceptionOnInvalidedInforOfTags(self):
         expectedString = "Fix.getSightings:  "
+        fix = Fix.Fix(self.myLogFile)
+        fix.setSightingFile("InvalidedInfoSightings.xml")
         with self.assertRaises(ValueError) as context:
-            fix = Fix.Fix(self.errorLogFile2)
             tuple = fix.getSightings()                         
         self.assertEquals(expectedString, context.exception.args[0][0:len(expectedString)]) 
 
+    def test300_940_ShouldRaiseExceptionOnTooLessObservedAltitude(self):
+        expectedString = "Fix.getSightings:  "
+        fix = Fix.Fix(self.myLogFile)
+        fix.setSightingFile("InvalidedOAltitudeSightings.xml")
+        with self.assertRaises(ValueError) as context:
+            tuple = fix.getSightings()                         
+        self.assertEquals(expectedString, context.exception.args[0][0:len(expectedString)]) 

@@ -9,11 +9,10 @@ import Angle
 class Fix(object):
 
     def __init__(self, logFile =  "log.txt"):
-        functionName = "Fix.__init__:  "
         if not isinstance(logFile, str):
-            raise ValueError(functionName + "illegal logFile")
+            raise ValueError("Fix.__init__:  " + "illegal logFile")
         if logFile == "":
-            raise ValueError(functionName + "illegal logFile")
+            raise ValueError("Fix.__init__:  " + "illegal logFile")
         startString = "Start of log\n"
         self.nameOfSightingFile = None
         self.sightingfile = None
@@ -21,20 +20,19 @@ class Fix(object):
         self.logfile = open(logFile,"a")
         self.logfile.write(self.logFormatString + startString + "\n")    
         if not isfile(logFile):
-            raise ValueError(functionName + "logFile can not create")         
+            raise ValueError("Fix.__init__:  " + "logFile can not create")         
     
     def setSightingFile(self,sightingFile = ".xml"):
-        functionName = "Fix.setSightingFile:  "
         if not isinstance(sightingFile, str):
-            raise ValueError(functionName + "illegal sightingFile")
+            raise ValueError("Fix.setSightingFile:  " + "illegal sightingFile")
         matchSightingF = re.match(r'^\S+\.xml$', sightingFile)
         if not matchSightingF:
-            raise ValueError(functionName + "illegal sightingFile")
+            raise ValueError("Fix.setSightingFile:  " + "illegal sightingFile")
         else:
             try:
                 self.sightingfile = open(sightingFile,"r")
             except:
-                raise ValueError(functionName + "sightingFile cannot open")
+                raise ValueError("Fix.setSightingFile:  " + "sightingFile cannot open")
             self.nameOfSightingFile = sightingFile
             startString = "Start of sighting file: " + sightingFile
             self.logfile.write(self.logFormatString + startString + "\n")    
@@ -78,6 +76,8 @@ class Fix(object):
         adjustAltitudes = [[]for i in range(numberOfSighting)]
         for i in range(numberOfSighting): 
             adjustAltitude = self.calculateAdjustedAltitude(xml_List[i])
+            if adjustAltitude == None:
+                raise ValueError("Fix.getSightings:  altitude must .GE. 0.1 arc-minutes")
             self.logfile.write(self.logFormatString + xml_List[i][0] + "\t" 
                                +  xml_List[i][1] + "\t" + xml_List[i][2] + "\t" + adjustAltitude + "\n")
             adjustAltitudes[i].append(adjustAltitude)
@@ -90,10 +90,9 @@ class Fix(object):
             dig = 0
         angle = Angle.Angle()
         altitude = angle.setDegreesAndMinutes( xmlList[3] )
-        altitude = math.radians(altitude)
-        if altitude < 0.1:
-            raise ValueError("Fix.calculateAdjustedAltitude:  altitude must .GE. 0.1 arc-minutes")
-        refraction = (-0.00452 * float(xmlList[6])) / (273 + (float(xmlList[5])-32) / 1.8) / (math.tan(altitude))
+        if altitude < math.degrees(0.1/60):
+            return None
+        refraction = (-0.00452 * float(xmlList[6])) / (273 + (float(xmlList[5])-32) / 1.8) / (math.tan(math.radians(altitude)))
         adjustAltitude = altitude + dig +refraction
         angle.setDegrees(adjustAltitude)
         adjustAltitude = angle.getString()

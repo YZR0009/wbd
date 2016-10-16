@@ -12,6 +12,7 @@ logfile = open(defaultName,"a")
 logfile.write(logFormatString + startString)  
 '''
 import Navigation.prod.SightingsList as S
+import math
 
 sightingsList = S.SightingsList("sightingFile.xml")
 sightingsList.get_sightings()
@@ -52,3 +53,6 @@ try:
     datetime.strptime("23:12:59","%H:%M:%S")
 except:
     print("F")
+    
+print(math.degrees(0.1/60))
+print(math.radians(0.095))
