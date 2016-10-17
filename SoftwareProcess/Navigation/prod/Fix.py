@@ -2,7 +2,6 @@ import time as t
 from genericpath import isfile
 import re
 from Navigation.prod import SightingsList as S
-from cgi import logfile
 import math
 import Angle
 
@@ -13,7 +12,7 @@ class Fix(object):
             raise ValueError("Fix.__init__:  " + "illegal logFile")
         if logFile == "":
             raise ValueError("Fix.__init__:  " + "illegal logFile")
-        startString = "Start of log\n"
+        startString = "Start of log"
         self.nameOfSightingFile = None
         self.sightingfile = None
         self.logFormatString = "LOG:\t" + self.getCurrentTime() + ":\t"
@@ -76,11 +75,11 @@ class Fix(object):
         adjustAltitudes = [[]for i in range(numberOfSighting)]
         for i in range(numberOfSighting): 
             adjustAltitude = self.calculateAdjustedAltitude(xml_List[i])
-            if adjustAltitude == None:
-                raise ValueError("Fix.getSightings:  altitude must .GE. 0.1 arc-minutes")
             self.logfile.write(self.logFormatString + xml_List[i][0] + "\t" 
                                +  xml_List[i][1] + "\t" + xml_List[i][2] + "\t" + adjustAltitude + "\n")
             adjustAltitudes[i].append(adjustAltitude)
+        self.logfile.write(self.logFormatString + "End of sighting file: " + self.nameOfSightingFile + "\n")
+        self.logfile.close()
         return adjustAltitudes
      
     def calculateAdjustedAltitude(self, xmlList):
@@ -89,9 +88,12 @@ class Fix(object):
         else:
             dig = 0
         angle = Angle.Angle()
-        altitude = angle.setDegreesAndMinutes( xmlList[3] )
-        if altitude < math.degrees(0.1/60):
-            return None
+        try:
+            altitude = angle.setDegreesAndMinutes( xmlList[3] )
+        except:
+            raise ValueError("Fix.getSightings:  altitude must .GE. 0.1 arc-minutes")
+        if altitude < (0.1/60):
+            raise ValueError("Fix.getSightings:  altitude must .GE. 0.1 arc-minutes")
         refraction = (-0.00452 * float(xmlList[6])) / (273 + (float(xmlList[5])-32) / 1.8) / (math.tan(math.radians(altitude)))
         adjustAltitude = altitude + dig +refraction
         angle.setDegrees(adjustAltitude)
@@ -101,9 +103,9 @@ class Fix(object):
     def getCurrentTime(self):
         currentTime = t.strftime("%Y-%m-%d %H:%M:%S", t.localtime(t.time()))
         if t.timezone >= 0:
-            currentTime += "+" 
+            currentTime += "-" 
         else:
-            currentTime += "-"
+            currentTime += "+"
         currentTime += t.strftime("%H:%M",t.gmtime(t.timezone))
         return currentTime
         
