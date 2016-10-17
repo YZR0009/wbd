@@ -80,7 +80,10 @@ class Fix(object):
             adjustAltitudes[i].append(adjustAltitude)
         self.logfile.write(self.logFormatString + "End of sighting file: " + self.nameOfSightingFile + "\n")
         self.logfile.close()
-        return adjustAltitudes
+#        return adjustAltitudes
+        approximateLatitude = "0d0.0"
+        approximateLongitude = "0d0.0"
+        return (approximateLatitude,approximateLongitude)
      
     def calculateAdjustedAltitude(self, xmlList):
         if xmlList[7] == "Natural":
