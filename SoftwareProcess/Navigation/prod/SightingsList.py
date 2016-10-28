@@ -105,13 +105,20 @@ class SightingsList(object):
             isObservationWrong = self.isObservationError(self.observation[i])
             if isObservationWrong:
                 return True
+            try:
+                float(self.height[i])
+                int(self.temperature[i])
+                int(self.pressure[i])
+            except:
+                return True
             if float(self.height[i]) < 0:
                 return True
             if (int(self.temperature[i]) < -2) or (int(self.temperature[i]) > 120):
                 return True
             if (int(self.pressure[i]) < 100) or (int(self.pressure[i]) > 1100):
                 return True
-            if not (((self.horizon[i] == "Natural") or (self.horizon[i] == "Artificial"))):
+            if not (((self.horizon[i] == "Natural") or (self.horizon[i] == "natural") or 
+                     (self.horizon[i] == "Artificial") or (self.horizon[i] == "artificial"))):
                 return True
         return False
                 

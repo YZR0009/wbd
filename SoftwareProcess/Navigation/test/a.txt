@@ -95,3 +95,5 @@ LOG:	2016-10-16 21:00:33-06:00:	Start of log
 LOG:	2016-10-16 21:11:44-06:00:	Start of log
 LOG:	2016-10-16 21:20:54-06:00:	Start of log
 LOG:	2016-10-16 21:57:05-06:00:	Start of log
+LOG:	2016-10-25 20:48:40-06:00:	Log file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/a.txt
+LOG:	2016-10-25 20:53:31-06:00:	Log file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/a.txt

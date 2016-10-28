@@ -12,12 +12,13 @@ class Fix(object):
             raise ValueError("Fix.__init__:  " + "illegal logFile")
         if logFile == "":
             raise ValueError("Fix.__init__:  " + "illegal logFile")
-        startString = "Start of log"
+        self.nameOfLogFile = logFile
         self.nameOfSightingFile = None
-        self.sightingfile = None
+        #self.sightingfile = None
         self.logFormatString = "LOG:\t" + self.getCurrentTime() + ":\t"
-        self.logfile = open(logFile,"a")
-        self.logfile.write(self.logFormatString + startString + "\n")    
+        logs = open(self.nameOfLogFile,"a")
+        logs.write(self.logFormatString + "Start of log" + "\n")  
+        logs.close()  
         if not isfile(logFile):
             raise ValueError("Fix.__init__:  " + "logFile can not create")         
     
@@ -33,8 +34,9 @@ class Fix(object):
             except:
                 raise ValueError("Fix.setSightingFile:  " + "sightingFile cannot open")
             self.nameOfSightingFile = sightingFile
-            startString = "Start of sighting file: " + sightingFile
-            self.logfile.write(self.logFormatString + startString + "\n")    
+            logs = open(self.nameOfLogFile,"a")
+            logs.write(self.logFormatString + "Start of sighting file: " + sightingFile + "\n") 
+            logs.close()     
             return sightingFile
             
     def getSightings(self):
@@ -73,20 +75,21 @@ class Fix(object):
         xml_List.sort( key = lambda l: (l[1], l[2], l[0]) )  
         
         adjustAltitudes = [[]for i in range(numberOfSighting)]
+        logs = open(self.nameOfLogFile,"a")
         for i in range(numberOfSighting): 
             adjustAltitude = self.calculateAdjustedAltitude(xml_List[i])
-            self.logfile.write(self.logFormatString + xml_List[i][0] + "\t" 
+            logs.write(self.logFormatString + xml_List[i][0] + "\t" 
                                +  xml_List[i][1] + "\t" + xml_List[i][2] + "\t" + adjustAltitude + "\n")
             adjustAltitudes[i].append(adjustAltitude)
-        self.logfile.write(self.logFormatString + "End of sighting file: " + self.nameOfSightingFile + "\n")
-        self.logfile.close()
+        logs.write(self.logFormatString + "End of sighting file: " + self.nameOfSightingFile + "\n")
+        logs.close()
 #        return adjustAltitudes
         approximateLatitude = "0d0.0"
         approximateLongitude = "0d0.0"
         return (approximateLatitude,approximateLongitude)
      
     def calculateAdjustedAltitude(self, xmlList):
-        if xmlList[7] == "Natural":
+        if xmlList[7] == "Natural" or xmlList[7] == "natural":
             dig = (-0.97 * math.sqrt(float(xmlList[4]))) / 60
         else:
             dig = 0
