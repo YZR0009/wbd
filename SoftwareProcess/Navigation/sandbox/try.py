@@ -13,6 +13,8 @@ logfile.write(logFormatString + startString)
 '''
 import Navigation.prod.SightingsList as S
 import math
+import Navigation.prod.Fix as F
+
 
 sightingsList = S.SightingsList("sightingFile.xml")
 sightingsList.get_sightings()
@@ -56,3 +58,16 @@ except:
     
 print(math.degrees(0.1/60))
 print(math.radians(0.095))
+
+#log = open("log.txt",'r')
+log = open("log.txt",'a')
+log.write("Start of log1\n")
+log = open("log.txt",'a')
+log.write("Start of log2")
+log = open("log.txt",'r')
+content = log.readlines()
+print(content)
+print(content[-1].find("Start of log"))
+print(content[-1])
+print(content[0])
+
