@@ -14,7 +14,6 @@ class Fix(object):
             raise ValueError("Fix.__init__:  " + "illegal logFile")
         self.nameOfLogFile = logFile
         self.nameOfSightingFile = None
-        #self.sightingfile = None
         self.logFormatString = "LOG:\t" + self.getCurrentTime() + ":\t"
         logs = open(self.nameOfLogFile,"a")
         logs.write(self.logFormatString + "Start of log" + "\n")  
