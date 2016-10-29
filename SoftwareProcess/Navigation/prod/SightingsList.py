@@ -117,8 +117,10 @@ class SightingsList(object):
                 return True
             if (int(self.pressure[i]) < 100) or (int(self.pressure[i]) > 1100):
                 return True
-            if not (((self.horizon[i] == "Natural") or (self.horizon[i] == "natural") or 
-                     (self.horizon[i] == "Artificial") or (self.horizon[i] == "artificial"))):
+            natural = "natural"
+            artificial = "artificial"
+            if not ((self.horizon[i].lower() == natural.lower()) 
+                                   or (self.horizon[i].lower() == artificial.lower())):
                 return True
         return False
                 
