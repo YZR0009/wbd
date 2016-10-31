@@ -38,22 +38,34 @@ class SightingsList(object):
 
     def get_body(self):
         for sighting in self.sightings:
-            self.body.append(str(sighting.getElementsByTagName("body")[0].childNodes[0].data))
+            try:
+                self.body.append(str(sighting.getElementsByTagName("body")[0].childNodes[0].data))
+            except:
+                self.body.append("")
         return self.body
 
     def get_date(self):
         for sighting in self.sightings:
-            self.date.append(str(sighting.getElementsByTagName("date")[0].childNodes[0].data))
+            try:
+                self.date.append(str(sighting.getElementsByTagName("date")[0].childNodes[0].data))
+            except:
+                self.date.append("")
         return self.date
 
     def get_time(self):
         for sighting in self.sightings:
-            self.time.append(str(sighting.getElementsByTagName("time")[0].childNodes[0].data))
+            try:
+                self.time.append(str(sighting.getElementsByTagName("time")[0].childNodes[0].data))
+            except:
+                self.time.append("")
         return self.time
 
     def get_observation(self):
         for sighting in self.sightings:
-            self.observation.append(str(sighting.getElementsByTagName("observation")[0].childNodes[0].data))
+            try:
+                self.observation.append(str(sighting.getElementsByTagName("observation")[0].childNodes[0].data))
+            except:
+                self.observation.append("")
         return self.observation
 
     def get_height(self):
@@ -94,35 +106,37 @@ class SightingsList(object):
     def checkError(self):
         if self.fix == None or self.sightings == None:
             return True
+        errors = [0 for i in range(self.count)]
         for i in range(self.count):
             if not self.body[i].isalpha():
-                return True
+                errors[i] +=1
             try:
                 datetime.strptime(self.date[i],"%Y-%m-%d")
                 datetime.strptime(self.time[i],"%H:%M:%S")
             except:
-                return True
+                errors[i] +=1
             isObservationWrong = self.isObservationError(self.observation[i])
             if isObservationWrong:
-                return True
+                errors[i] +=1
             try:
                 float(self.height[i])
                 int(self.temperature[i])
                 int(self.pressure[i])
             except:
-                return True
+                errors[i] +=1
             if float(self.height[i]) < 0:
-                return True
+                errors[i] +=1
             if (int(self.temperature[i]) < -2) or (int(self.temperature[i]) > 120):
-                return True
+                errors[i] +=1
             if (int(self.pressure[i]) < 100) or (int(self.pressure[i]) > 1100):
-                return True
+                errors[i] +=1
             natural = "natural"
             artificial = "artificial"
-            if not ((self.horizon[i].lower() == natural.lower()) 
-                                   or (self.horizon[i].lower() == artificial.lower())):
-                return True
-        return False
+            if not ((self.horizon[i].lower() == natural) 
+                                   or (self.horizon[i].lower() == artificial)):
+                errors[i] +=1
+
+        return errors
                 
     def isObservationError(self,observation):     
         matchAngle = re.match( r'^(\-?\d+) d ((\d+)$ | (\d+\.{1}\d{1})$)',observation,re.X)
