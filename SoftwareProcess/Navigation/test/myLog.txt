@@ -918,3 +918,41 @@ LOG:	2016-10-16 21:57:05-06:00:	Start of sighting file: InvalidedInfoSightings.x
 LOG:	2016-10-16 21:57:05-06:00:	Start of log
 LOG:	2016-10-16 21:57:05-06:00:	Start of sighting file: InvalidedOAltitudeSightings.xml
 LOG:	2016-10-16 21:57:05-06:00:	Aldebaran	2016-03-01	23:40:01	15d01.5
+LOG:	2016-10-25 20:48:40-06:00:	Log file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/myLog.txt
+LOG:	2016-10-25 20:48:40-06:00:	Start of sighting file: sightingFile.xml
+LOG:	2016-10-25 20:48:40-06:00:	Log file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/myLog.txt
+LOG:	2016-10-25 20:48:40-06:00:	Log file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/myLog.txt
+LOG:	2016-10-25 20:48:40-06:00:	Log file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/myLog.txt
+LOG:	2016-10-25 20:48:40-06:00:	Log file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/myLog.txt
+LOG:	2016-10-25 20:48:40-06:00:	Log file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/myLog.txt
+LOG:	2016-10-25 20:48:40-06:00:	Start of sighting file: sightingFile.xml
+LOG:	2016-10-25 20:48:40-06:00:	Aldebaran	2016-03-01	23:40:01	15d01.5
+LOG:	2016-10-25 20:48:40-06:00:	Peacock	2016-03-02	00:05:05	45d11.9
+LOG:	2016-10-25 20:48:40-06:00:	End of sighting file: sightingFile.xml
+LOG:	2016-10-25 20:48:40-06:00:	Log file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/myLog.txt
+LOG:	2016-10-25 20:48:40-06:00:	Log file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/myLog.txt
+LOG:	2016-10-25 20:48:40-06:00:	Start of sighting file: missingTagsSightings.xml
+LOG:	2016-10-25 20:48:40-06:00:	Log file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/myLog.txt
+LOG:	2016-10-25 20:48:40-06:00:	Start of sighting file: InvalidedInfoSightings.xml
+LOG:	2016-10-25 20:48:40-06:00:	Log file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/myLog.txt
+LOG:	2016-10-25 20:48:40-06:00:	Start of sighting file: InvalidedOAltitudeSightings.xml
+LOG:	2016-10-25 20:48:40-06:00:	Aldebaran	2016-03-01	23:40:01	15d01.5
+LOG:	2016-10-25 20:53:31-06:00:	Log file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/myLog.txt
+LOG:	2016-10-25 20:53:31-06:00:	Sighting file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/sightingFile.xml
+LOG:	2016-10-25 20:53:31-06:00:	Log file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/myLog.txt
+LOG:	2016-10-25 20:53:31-06:00:	Log file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/myLog.txt
+LOG:	2016-10-25 20:53:31-06:00:	Log file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/myLog.txt
+LOG:	2016-10-25 20:53:31-06:00:	Log file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/myLog.txt
+LOG:	2016-10-25 20:53:31-06:00:	Log file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/myLog.txt
+LOG:	2016-10-25 20:53:31-06:00:	Sighting file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/sightingFile.xml
+LOG:	2016-10-25 20:53:31-06:00:	Aldebaran	2016-03-01	23:40:01	15d01.5
+LOG:	2016-10-25 20:53:31-06:00:	Peacock	2016-03-02	00:05:05	45d11.9
+LOG:	2016-10-25 20:53:31-06:00:	End of sighting file: sightingFile.xml
+LOG:	2016-10-25 20:53:31-06:00:	Log file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/myLog.txt
+LOG:	2016-10-25 20:53:31-06:00:	Log file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/myLog.txt
+LOG:	2016-10-25 20:53:31-06:00:	Sighting file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/missingTagsSightings.xml
+LOG:	2016-10-25 20:53:31-06:00:	Log file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/myLog.txt
+LOG:	2016-10-25 20:53:31-06:00:	Sighting file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/InvalidedInfoSightings.xml
+LOG:	2016-10-25 20:53:31-06:00:	Log file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/myLog.txt
+LOG:	2016-10-25 20:53:31-06:00:	Sighting file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/InvalidedOAltitudeSightings.xml
+LOG:	2016-10-25 20:53:31-06:00:	Aldebaran	2016-03-01	23:40:01	15d01.5

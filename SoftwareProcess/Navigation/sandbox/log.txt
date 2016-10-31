@@ -1,13 +1,2 @@
-LOG:	Start of log
-LOG:	Start of log
-LOG:	Start of log
-LOG:	Start of log
-LOG:	2016-10-09 15:24:01+06:00Start of log
-LOG:	2016-10-09 15:24:36+06:00Start of log
-LOG:	2016-10-09 15:25:15+06:00:	Start of log
-LOG:	2016-10-09 15:26:27+06:00	Start of log
-LOG:	2016-10-09 15:32:21+06:00	Start of log
-LOG:	2016-10-09 15:32:32+06:00	Start of log
-LOG:	2016-10-09 15:38:34+06:00	Start of log
-LOG:	2016-10-09 15:38:41+06:00	Start of log
-LOG:	2016-10-09 15:46:16+06:00	Start of log
+Start of log1
+Start of log2
