@@ -1,0 +1,4 @@
+LOG:	2016-11-17 15:32:55-06:00:	Log file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/log5a9b61a8f6f3.txt
+LOG:	2016-11-17 15:32:55-06:00:	Sighting file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/CA02_300_InvalidDate.xml
+LOG:	2016-11-17 15:32:55-06:00:	Aries file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/CA03_Valid_Aries.txt
+LOG:	2016-11-17 15:32:55-06:00:	Star file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/CA03_Valid_Stars.txt
