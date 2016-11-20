@@ -122,14 +122,15 @@ class SightingsList(object):
                 float(self.height[i])
                 int(self.temperature[i])
                 int(self.pressure[i])
+                if float(self.height[i]) < 0:
+                    errors[i] +=1
+                if (int(self.temperature[i]) < -2) or (int(self.temperature[i]) > 120):
+                    errors[i] +=1
+                if (int(self.pressure[i]) < 100) or (int(self.pressure[i]) > 1100):
+                    errors[i] +=1
             except:
                 errors[i] +=1
-            if float(self.height[i]) < 0:
-                errors[i] +=1
-            if (int(self.temperature[i]) < -2) or (int(self.temperature[i]) > 120):
-                errors[i] +=1
-            if (int(self.pressure[i]) < 100) or (int(self.pressure[i]) > 1100):
-                errors[i] +=1
+
             natural = "natural"
             artificial = "artificial"
             if not ((self.horizon[i].lower() == natural) 

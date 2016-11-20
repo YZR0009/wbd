@@ -133,8 +133,10 @@ class Fix(object):
                                + "\t" + adjustAltitude 
                                + "\t" + approximateLatitude
                                + "\t" + approximateLongitude + "\n")
-        logs.write(self.logFormatString + "Sighting errors: " + str(self.numberOfSightingError) + "\n")
+        logs.write(self.logFormatString + "Sighting errors:\t" + str(self.numberOfSightingError) + "\n")
         logs.close()
+        approximateLatitude = "0d0.0"
+        approximateLongitude = "0d0.0"
         return (approximateLatitude,approximateLongitude)
      
     def calculateAdjustedAltitude(self, xmlList):
@@ -159,8 +161,11 @@ class Fix(object):
     def getLatitude(self, xmlList):
         body = xmlList[0]
         dateStr = xmlList[1]
-        date = d.datetime.strptime(dateStr,'%Y-%m-%d')
-        dateStr = date.strftime('%m/%d/%y')
+        try:
+            date = d.datetime.strptime(dateStr,'%Y-%m-%d')
+            dateStr = date.strftime('%m/%d/%y')
+        except:
+            return None
 
         dateEarlier = dateStr
         while True:
@@ -222,15 +227,19 @@ class Fix(object):
         return self.SHAstar
     
     def calculateGHAaries(self,xmlList):
-        dateStr = xmlList[1]
-        date = d.datetime.strptime(dateStr,'%Y-%m-%d')
-        dateStr = date.strftime('%m/%d/%y')
-        timeStr = xmlList[2]
-        time = d.datetime.strptime(timeStr,'%H:%M:%S')
-        hour = time.strftime('%H')
-        hour = str(int(hour))
-        minute = float(time.strftime('%M'))
-        second = float(time.strftime('%S'))
+        try:
+            dateStr = xmlList[1]
+            date = d.datetime.strptime(dateStr,'%Y-%m-%d')
+            dateStr = date.strftime('%m/%d/%y')
+            timeStr = xmlList[2]
+            time = d.datetime.strptime(timeStr,'%H:%M:%S')
+            hour = time.strftime('%H')
+            hour = str(int(hour))
+            minute = float(time.strftime('%M'))
+            second = float(time.strftime('%S'))
+        except:
+            return None
+        
         
         aries = open(self.absolutePathOfAriesFile,'r')
         key = dateStr + "\t" + hour
