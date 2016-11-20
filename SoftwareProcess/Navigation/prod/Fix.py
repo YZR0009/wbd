@@ -6,6 +6,7 @@ import math
 import Angle
 import os
 import datetime as d
+from numpy import arcsin, arccos
 
 class Fix(object):
 
@@ -79,9 +80,13 @@ class Fix(object):
             logs.close() 
             return self.absolutePathOfStarFile
             
-    def getSightings(self):
+    def getSightings(self,assumedLatitude = "0d0.0",assumedLongitude = "0d0.0"):
         if self.absolutePathOfSightingFile == None or self.absolutePathOfAriesFile == None or self.absolutePathOfStarFile == None:
             raise ValueError("Fix.getSightings:  no sighting file or aries file or star file has been set")
+        isError1 = self.checkAngle(assumedLatitude, False, True)
+        isError2 = self.checkAngle(assumedLongitude, False, False)
+        if isError1 == True or isError2 == True:
+            raise ValueError("Fix.getSightings:  parameters violate the specification describe")
 
         sightingsList = S.SightingsList(self.absolutePathOfSightingFile)
         sightingsList.get_fix()
@@ -119,24 +124,32 @@ class Fix(object):
                     newErrors[i] = Errors[j]           
         
         logs = open(self.absolutePathOfLogFile,"a")
+        adjustAltitudeList = ["" for i in range(numberOfSighting)]
+        latitudeList = ["" for i in range(numberOfSighting)]
+        longitudeList = ["" for i in range(numberOfSighting)]
         for i in range(numberOfSighting): 
             adjustAltitude = self.calculateAdjustedAltitude(xml_List2[i])
-            approximateLatitude = self.getLatitude(xml_List2[i])
-            approximateLongitude = self.calculateLongitude(xml_List2[i])
-            if adjustAltitude == None or approximateLatitude == None or approximateLongitude == None:
+            latitude = self.getLatitude(xml_List2[i])
+            longitude = self.calculateLongitude(xml_List2[i])
+            if adjustAltitude == None or latitude == None or longitude == None:
                 newErrors[i] += 1
+            else:
+                adjustAltitudeList[i] = adjustAltitude
+                latitudeList[i] = latitude
+                longitudeList[i] = longitude
             if newErrors[i] > 0:
                 self.numberOfSightingError += 1
                 continue
             logs.write(self.logFormatString + xml_List2[i][0] + "\t" 
                                +  xml_List2[i][1] + "\t" + xml_List2[i][2] 
                                + "\t" + adjustAltitude 
-                               + "\t" + approximateLatitude
-                               + "\t" + approximateLongitude + "\n")
+                               + "\t" + latitude
+                               + "\t" + longitude + "\n")
+        approximateLatitude = calculateApproximateLatitude(adjustAltitudeList,latitudeList,longitudeList,assumedLatitude,assumedLongitude)
+        approximateLongitude = calculateApproximateLongitude(adjustAltitudeList,latitudeList,longitudeList,assumedLatitude,assumedLongitude)
         logs.write(self.logFormatString + "Sighting errors:\t" + str(self.numberOfSightingError) + "\n")
         logs.close()
-        approximateLatitude = "0d0.0"
-        approximateLongitude = "0d0.0"
+
         return (approximateLatitude,approximateLongitude)
      
     def calculateAdjustedAltitude(self, xmlList):
@@ -180,8 +193,8 @@ class Fix(object):
         resultList = matchResult.split("\t")
         self.SHAstar = resultList[2]      
         self.latitude = resultList[3]
-        isError1 = self.checkAngle(self.SHAstar,False)
-        isError2 = self.checkAngle(self.latitude,True)
+        isError1 = self.checkAngle(self.SHAstar,False,False)
+        isError2 = self.checkAngle(self.latitude,True,False)
         if isError1 == True:
             self.SHAstar = None
         if isError2 == True:
@@ -263,8 +276,8 @@ class Fix(object):
         resultList2 = result2.split("\t")
         GHA_aries2 = resultList2[2]
         
-        isError1 = self.checkAngle(GHA_aries1,False)
-        isError2 = self.checkAngle(GHA_aries2,False)
+        isError1 = self.checkAngle(GHA_aries1,False,False)
+        isError2 = self.checkAngle(GHA_aries2,False,False)
         if isError1 == True or isError2 == True:
             return None
         angle1 = Angle.Angle()
@@ -285,14 +298,17 @@ class Fix(object):
         currentTime += t.strftime("%H:%M",t.gmtime(t.timezone))
         return currentTime
     
-    def checkAngle(self,angle,isLatitude):
+    def checkAngle(self,angle,isLatitude,isAssumedLatitude):
         try:
             angleList = angle.split("d")  
             degree = int(angleList[0])
             minute = float(angleList[1])
         except:
             return True
-        if isLatitude == True:
+        if isAssumedLatitude == True:
+            if (degree < 0) or (degree >= 90) :
+                return True
+        elif isLatitude == True:
             if (degree <= -90) or (degree >= 90) :
                 return True
         else:
@@ -302,4 +318,42 @@ class Fix(object):
             return True
         return False
         
+    def calculateApproximateLatitude(self,distanceAdjustment,azimuthAdjustment):
+
+        approximateLatitude = ""
+        return approximateLatitude
+        
+    def calculateApproximateLongitude(self,distanceAdjustment,azimuthAdjustment):
+
+        approximateLongitude = ""
+        return approximateLongitude
+    
+    def calculateDistanceAdjustment(self,adjustAltitude,latitude,longitude,assumedLatitude,assumedLongitude):
+        angle1 = Angle.Angle()
+        angle1.setDegreesAndMinutes(longitude)
+        longitudeAngle = angle1.getDegrees()
+        angle1.setDegreesAndMinutes(assumedLongitude)
+        assumedLongitudeAngle = angle1.getDegrees()
+        LHA = longitudeAngle - assumedLongitudeAngle
+        
+        angle1.setDegreesAndMinutes(latitude)
+        latitudeAngle = angle1.getDegrees()
+        angle1.setDegreesAndMinutes(assumedLatitude)
+        assumedLatitudeAngle = angle1.getDegrees()
+        correctedAltitude = arcsin( (sin(latitudeAngle) * sin(assumedLatitudeAngle)) 
+                                    + (cos(latitudeAngle) * cos(assumedLatitudeAngle) * cos(LHA))) 
+        angle1.setDegreesAndMinutes(adjustAltitude)
+        adjustAltitudeAngle = angle1.getDegrees() 
+        distanceAdjustment = adjustAltitudeAngle - correctedAltitude 
+        return distanceAdjustment   
+        
+    def calculateAzimuthAdjustment(self,latitude,assumedLatitude,distanceAdjustment):
+        angle1 = Angle.Angle()       
+        angle1.setDegreesAndMinutes(latitude)
+        latitudeAngle = angle1.getDegrees()
+        angle1.setDegreesAndMinutes(assumedLatitude)
+        assumedLatitudeAngle = angle1.getDegrees()
+        azimuthAdjustment = arccos((sin(latitudeAngle) - sin(assumedLatitudeAngle) * sin(distanceAdjustment)) 
+                                   / (cos(assumedLatitudeAngle) * cos(distanceAdjustment)))
+        return azimuthAdjustment
         
