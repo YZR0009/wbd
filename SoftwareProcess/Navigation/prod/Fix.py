@@ -319,6 +319,9 @@ class Fix(object):
             h = angle[0:1]
             if h == "N" or h == "S":
                 angle = angle[1:]
+            else:
+                if angle != "0d0.0":
+                    return True
         try:
             angleList = angle.split("d")  
             degree = int(angleList[0])
@@ -326,8 +329,12 @@ class Fix(object):
         except:
             return True
         if isAssumedLatitude == True:
-            if (degree < 0) or (degree >= 90) :
-                return True            
+            if h == "N" or h == "S":
+                if degree == 0 and minute == 0.0:
+                    return True
+                else:
+                    if (degree < 0) or (degree >= 90) :
+                        return True            
         elif isAssumedLongitude == True:
             if (degree < 0) or (degree >= 360) :
                 return True
