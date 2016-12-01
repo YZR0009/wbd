@@ -1,4 +1,4 @@
-LOG:	2016-12-01 12:56:21-06:00:	Log file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/log.txt
-LOG:	2016-12-01 12:56:21-06:00:	Sighting file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/CA05sightings.xml
-LOG:	2016-12-01 12:56:21-06:00:	Aries file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/CA03_Valid_Aries.txt
-LOG:	2016-12-01 12:56:21-06:00:	Star file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/CA03_Valid_Aries.txt
+LOG:	2016-12-01 13:06:55-06:00:	Log file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/log.txt
+LOG:	2016-12-01 13:06:55-06:00:	Sighting file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/CA05sightings.xml
+LOG:	2016-12-01 13:06:55-06:00:	Aries file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/CA03_Valid_Aries.txt
+LOG:	2016-12-01 13:06:55-06:00:	Star file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/CA03_Valid_Aries.txt
