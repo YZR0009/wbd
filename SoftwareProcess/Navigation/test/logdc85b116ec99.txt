@@ -1,1 +1,0 @@
-LOG:	2016-11-17 15:27:43-06:00:	Log file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/logdc85b116ec99.txt

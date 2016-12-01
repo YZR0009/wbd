@@ -97,7 +97,7 @@ class Angle():
             self.degree = int(self.degree)
         string += str(self.degree)
         string += "d"
-        if self.minute < 10:
+        if self.minute < 10 and self.minute > 0:
             string += "0"
         string += str(self.minute)
         return string

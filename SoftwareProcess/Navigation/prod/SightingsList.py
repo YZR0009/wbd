@@ -108,9 +108,10 @@ class SightingsList(object):
             return True
         errors = [0 for i in range(self.count)]
         for i in range(self.count):
-            if not self.body[i].isalpha():
-                errors[i] +=1
             try:
+                for c in self.body[i]:
+                    if not (c.isalpha() or c.isspace() or c == "."):
+                        errors[i] +=1          
                 datetime.strptime(self.date[i],"%Y-%m-%d")
                 datetime.strptime(self.time[i],"%H:%M:%S")
             except:

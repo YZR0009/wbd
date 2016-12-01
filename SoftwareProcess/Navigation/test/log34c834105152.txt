@@ -1,2 +1,0 @@
-LOG:	2016-11-07 14:17:37-06:00:	Log file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/log34c834105152.txt
-LOG:	2016-11-07 14:17:37-06:00:	Sighting file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/CA03_300_ValidStarLatLonInterpolationRequired.xml

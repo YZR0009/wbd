@@ -1,1 +1,9 @@
-LOG:	2016-11-20 10:05:53-06:00:	Log file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/log.txt
+LOG:	2016-11-30 23:47:57-06:00:	Log file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/log.txt
+LOG:	2016-11-30 23:47:57-06:00:	Sighting file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/CA05sightings2.xml
+LOG:	2016-11-30 23:47:57-06:00:	Star file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/CA03_Valid_Stars.txt
+LOG:	2016-11-30 23:47:57-06:00:	Aries file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/CA03_Valid_Aries.txt
+LOG:	2016-11-30 23:47:57-06:00:	Rigil Kent.	2017-03-24	23:41:56	35d08.1	-60d53.8	318d09.9	S53d38.4	74d35.3	125d37.7	2159
+LOG:	2016-11-30 23:47:57-06:00:	Acrux	2017-03-24	23:42:06	48d33.9	-63d11.3	351d30.3	S53d38.4	74d35.3	132d48.3	434
+LOG:	2016-11-30 23:47:57-06:00:	Aldebaran	2017-03-24	23:43:12	13d42.3	16d32.3	109d27.8	S53d38.4	74d35.3	173d34.4	-3988
+LOG:	2016-11-30 23:47:57-06:00:	Sighting errors:	0
+LOG:	2016-11-30 23:47:57-06:00:	ApproximateLatitude:	S13d28.0	ApproximateLongitude:	101d42.2

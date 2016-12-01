@@ -1,4 +1,0 @@
-LOG:	2016-11-17 15:50:01-06:00:	Log file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/log3086ce52bebd.txt
-LOG:	2016-11-17 15:50:01-06:00:	Sighting file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/CA03_300_ValidStarLatLonInterpolationRequired.xml
-LOG:	2016-11-17 15:50:01-06:00:	Aries file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/CA03_Valid_Aries.txt
-LOG:	2016-11-17 15:50:01-06:00:	Star file:	/Users/yunfanrao/git/SoftwareProcess/SoftwareProcess/Navigation/test/CA03_Valid_Stars.txt

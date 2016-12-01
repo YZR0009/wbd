@@ -126,3 +126,13 @@ print(d3.strftime('%m/%d/%y'))
 str1 = "absfw\n"
 str2 = str1.rstrip()
 print(str2)
+
+str = "N39d2.1"
+h = str[0:1]
+str = str[1:]
+print(h)
+print(str)
+
+print(math.cos(math.radians(60)))
+print(math.radians(-60))
+
