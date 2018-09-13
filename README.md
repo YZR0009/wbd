@@ -2,6 +2,6 @@
 Software Process Project
 
 TDD test -> test folder
-Code -> Pod folder
+Code -> Prod folder
 
 sandbox just something for trying.
